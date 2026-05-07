@@ -1,14 +1,14 @@
 # Strategic Reasoning Steering
 
-Anonymized code and task data for the workshop submission:
-
 > Steering Strategic Reasoning in Chain-of-Thought Models: Structured Geometry,
 > Behavioral Shifts, and Interpretive Limits
 
-The repository contains scripts for annotation, activation extraction,
+The repository contains reference scripts for annotation, activation extraction,
 difference-of-means vector construction, intervention generation, OOD transfer,
-and analysis. Large model checkpoints and generated activation artifacts are not
-included.
+and analysis. These scripts are intended to document the computational logic of
+the paper rather than provide a fully reproducible artifact: large model
+checkpoints, generated activations, raw model outputs, and API-side annotation
+artifacts are not included.
 
 ## Layout
 
@@ -25,6 +25,10 @@ scripts/
   phase3_run_interventions.py
   phase4_run_ood_transfer.py
 ```
+
+The `phase*` script names reflect the experimental pipeline stages used in the
+paper. They are kept to make the code easy to map onto the reported methods and
+appendix results.
 
 ## Paths
 
