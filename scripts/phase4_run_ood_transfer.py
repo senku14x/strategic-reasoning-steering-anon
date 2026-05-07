@@ -27,6 +27,7 @@ Phase 4 annotation cell separately.
 """
 
 import json
+import os
 import numpy as np
 import torch
 import torch.nn.functional as F
@@ -41,6 +42,11 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 
+PROJECT_ROOT = Path(os.environ.get("PROJECT_ROOT", ".")).expanduser().resolve()
+DATA_DIR = Path(os.environ.get("DATA_DIR", PROJECT_ROOT / "data")).expanduser()
+ARTIFACTS_DIR = Path(os.environ.get("ARTIFACTS_DIR", PROJECT_ROOT / "artifacts")).expanduser()
+OUTPUTS_DIR = Path(os.environ.get("OUTPUTS_DIR", PROJECT_ROOT / "outputs")).expanduser()
+
 print("Imports OK")
 print(f"CUDA: {torch.cuda.is_available()}")
 if torch.cuda.is_available():
@@ -54,11 +60,11 @@ if torch.cuda.is_available():
 
 @dataclass
 class Phase4Config:
-    ood_file:        str = "/content/drive/MyDrive/workaround/ood.json"
-    vectors_npz:     str = "/content/drive/MyDrive/workaround/phase0_toolkit/phase2_outputs/r1_qwen14b_dom_vectors_v2.npz"
-    activations_npz: str = "/content/drive/MyDrive/workaround/phase0_toolkit/phase2_outputs/r1_qwen14b_activations_v2.npz"
-    labels_source:   str = "/content/drive/MyDrive/workaround/phase0_toolkit/phase2_outputs/r1_qwen14b_dom_vectors_v2.npz"
-    output_dir:      str = "/content/drive/MyDrive/workaround/phase0_toolkit/phase4_outputs"
+    ood_file:        str = str(DATA_DIR / "ood.json")
+    vectors_npz:     str = str(ARTIFACTS_DIR / "phase2_outputs" / "r1_qwen14b_dom_vectors_v2.npz")
+    activations_npz: str = str(ARTIFACTS_DIR / "phase2_outputs" / "r1_qwen14b_activations_v2.npz")
+    labels_source:   str = str(ARTIFACTS_DIR / "phase2_outputs" / "r1_qwen14b_dom_vectors_v2.npz")
+    output_dir:      str = str(OUTPUTS_DIR / "phase4_outputs")
 
     r1_model:   str = "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
     base_model: str = "Qwen/Qwen2.5-14B-Instruct"
