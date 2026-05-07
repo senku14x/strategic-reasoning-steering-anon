@@ -32,6 +32,7 @@ What this script does:
 
 import gc
 import json
+import os
 import re
 import time
 import warnings
@@ -45,6 +46,11 @@ import torch.nn.functional as F
 from tqdm.auto import tqdm
 
 warnings.filterwarnings("ignore")
+
+PROJECT_ROOT = Path(os.environ.get("PROJECT_ROOT", ".")).expanduser().resolve()
+DATA_DIR = Path(os.environ.get("DATA_DIR", PROJECT_ROOT / "data")).expanduser()
+ARTIFACTS_DIR = Path(os.environ.get("ARTIFACTS_DIR", PROJECT_ROOT / "artifacts")).expanduser()
+OUTPUTS_DIR = Path(os.environ.get("OUTPUTS_DIR", PROJECT_ROOT / "outputs")).expanduser()
 
 print("Imports OK")
 print(f"CUDA: {torch.cuda.is_available()}")
@@ -66,12 +72,12 @@ class Phase3Config:
         "giving your answer."
     )
 
-    dataset_file:    str = "/content/drive/MyDrive/workaround/final_dataset.json"
-    chains_file:     str = "/content/drive/MyDrive/workaround/phase0_toolkit/r1_qwen14b_chains.json"
-    vectors_npz:     str = "/content/drive/MyDrive/workaround/phase0_toolkit/phase2_outputs/r1_qwen14b_dom_vectors_v2.npz"
-    activations_npz: str = "/content/drive/MyDrive/workaround/phase0_toolkit/phase2_outputs/r1_qwen14b_activations_v2.npz"
-    baseline_json:   str = "/content/drive/MyDrive/workaround/phase0_toolkit/phase3_outputs/phase3_raw_outputs.json"
-    output_dir:      str = "/content/drive/MyDrive/workaround/phase0_toolkit/phase3_outputs"
+    dataset_file:    str = str(DATA_DIR / "final_dataset.json")
+    chains_file:     str = str(ARTIFACTS_DIR / "r1_qwen14b_chains.json")
+    vectors_npz:     str = str(ARTIFACTS_DIR / "phase2_outputs" / "r1_qwen14b_dom_vectors_v2.npz")
+    activations_npz: str = str(ARTIFACTS_DIR / "phase2_outputs" / "r1_qwen14b_activations_v2.npz")
+    baseline_json:   str = str(OUTPUTS_DIR / "phase3_outputs" / "phase3_raw_outputs.json")
+    output_dir:      str = str(OUTPUTS_DIR / "phase3_outputs")
 
     max_new_tokens:     int = 3072
     batch_size:         int = 8
