@@ -1,0 +1,416 @@
+{
+  "metadata": {
+    "description": "Out-of-distribution validation set for steering experiments",
+    "n_tasks": 50,
+    "categories": [
+      "incomplete_information",
+      "matrix_games",
+      "negotiation_coordination",
+      "repeated_games",
+      "sequential_games"
+    ],
+    "source": "Reconstructed from ood_steering_annotated.json"
+  },
+  "tasks": [
+    {
+      "task_id": "val_batch_1_01",
+      "prompt": "You are bidding in a first-price sealed-bid auction for a commercial property. Your private valuation is $800,000. There are two other bidders. From past auctions, you know Bidder 2's valuations are uniformly distributed between $600,000 and $900,000, and Bidder 3's valuations are uniformly distributed between $500,000 and $850,000. All bidders know the distribution of others' valuations but not their exact values. In a first-price auction, the highest bidder wins and pays their bid. If you win, your payoff is (your valuation - your bid). If you lose, your payoff is $0. Assume all bidders follow symmetric Bayesian Nash equilibrium strategies where each bids a fraction of their valuation. What should you bid?",
+      "category": "incomplete_information",
+      "subcategory": "First-Price Sealed-Bid Auction",
+      "ground_truth": "Bid $600,000",
+      "optimal_action": "Bid $600,000"
+    },
+    {
+      "task_id": "val_batch_1_02",
+      "prompt": "You are a job applicant deciding whether to obtain a graduate degree before applying to a prestigious firm. There are two types of workers: High-ability (you are this type) with productivity worth $150,000/year to the firm, and Low-ability with productivity worth $80,000/year. The firm cannot observe ability directly but offers $140,000/year to candidates with graduate degrees and $75,000/year to those without. The cost of obtaining the degree is $30,000 for High-ability workers (easier for you due to aptitude) and $95,000 for Low-ability workers. Low-ability workers know they cannot profitably signal, so they never get the degree. The firm believes any applicant with a degree is High-ability. Should you get the graduate degree?",
+      "category": "incomplete_information",
+      "subcategory": "Signaling Game - Education",
+      "ground_truth": "Get the graduate degree",
+      "optimal_action": "Get the graduate degree"
+    },
+    {
+      "task_id": "val_batch_1_03",
+      "prompt": "You are a cybersecurity firm deciding whether to invest $500,000 in advanced threat detection. You face a potential attacker who is either Sophisticated (probability 0.4) or Amateur (probability 0.6). If you invest and the attacker is Sophisticated, they will not attack (detecting the defense system), giving you a payoff of -$500,000 (investment cost). If you invest and the attacker is Amateur, they attack but are caught, giving you -$500,000 (investment) + $300,000 (insurance recovery) = -$200,000. If you don't invest and face a Sophisticated attacker, they successfully breach your system for a loss of -$2,000,000. If you don't invest and face an Amateur, they fail on their own (due to incompetence) with no loss, giving you $0. The attacker's decision: Sophisticated types attack only if you don't invest (expected gain $800,000 vs. $0 if deterred). Amateur types always attack regardless (irrational). Should you invest in the advanced system?",
+      "category": "incomplete_information",
+      "subcategory": "Bayesian Game - Opponent Type Uncertainty",
+      "ground_truth": "Do not invest",
+      "optimal_action": "Do not invest"
+    },
+    {
+      "task_id": "val_batch_1_04",
+      "prompt": "You are bidding for the rights to extract oil from a newly discovered field. The true value of the field is unknown but estimated to be uniformly distributed between $10 million and $50 million. You have conducted a private geological survey, and your estimate is $42 million. There are four other bidders, each with independent estimates drawn from the same distribution. This is a common value auction (all bidders would extract the same amount of oil, so the field has one true value). The auction is first-price sealed-bid: highest bidder wins and pays their bid. Based on auction theory, you know that your estimate being $42 million (relatively high) suggests the true value is likely lower due to the Winner's Curse. If all bidders bid their estimates, the winner systematically overpays. What should you bid to account for the Winner's Curse?",
+      "category": "incomplete_information",
+      "subcategory": "Common Value Auction - Winner's Curse",
+      "ground_truth": "Bid $28 million",
+      "optimal_action": "Bid $28 million"
+    },
+    {
+      "task_id": "val_batch_1_05",
+      "prompt": "You are a pharmaceutical startup deciding whether to publicize early-stage clinical trial results before seeking Series B funding. Your drug has two possible qualities: High-efficacy (true state, unknown to investors) with commercial value $500 million, or Low-efficacy with value $50 million. Publicizing results costs $8 million in regulatory filings and PR. If you publicize and the drug is High-efficacy, investors will value your company at $400 million. If you publicize and the drug is Low-efficacy, investors will detect the weakness and value you at $40 million. If you do not publicize, investors cannot distinguish quality and will offer a pooling valuation of $180 million (weighted average assuming 40% chance of High-efficacy in the market). A Low-efficacy firm would lose money by publicizing ($40M - $8M = $32M < $180M pooling offer), so they never signal. Should you publicize your results?",
+      "category": "incomplete_information",
+      "subcategory": "Signaling Game - Market Entry",
+      "ground_truth": "Publicize the results",
+      "optimal_action": "Publicize the results"
+    },
+    {
+      "task_id": "val_batch_1_06",
+      "prompt": "You are considering entering a regional telecommunications market currently monopolized by an incumbent firm. The incumbent is either Strong (probability 0.35), with cost structure allowing them to profitably wage a price war (cutting prices to $25/customer, your break-even point), or Weak (probability 0.65), with higher costs making price wars unprofitable for them (they lose money below $40/customer). You do not observe their type. If you enter and they are Strong, they will fight, giving you a payoff of -$12 million (losses from operating below break-even). If you enter and they are Weak, they will accommodate, giving you a payoff of $30 million (duopoly profits). If you do not enter, your payoff is $0 (you pursue other markets). The incumbent observes their own type. A Strong incumbent always fights entry (dominant strategy). A Weak incumbent would prefer to accommodate if you enter (fighting costs them $5 million, accommodating costs them $8 million in lost monopoly profits but avoids war losses). However, before you make your entry decision, the incumbent can send a costly signal by launching an aggressive advertising campaign costing $3 million, which both types could theoretically do. If a Weak incumbent mimics this signal, they would spend $3M on the campaign and then must decide whether to fight (losing $5M + $3M = $8M total, same as accommodating) or accommodate (losing $8M + $3M = $11M). This makes signaling unprofitable for Weak types. Assume Strong incumbents always signal. You observe that the incumbent has NOT launched the aggressive campaign. Should you enter the market?",
+      "category": "incomplete_information",
+      "subcategory": "Bayesian Game - Entry Deterrence",
+      "ground_truth": "Enter the market",
+      "optimal_action": "Enter the market"
+    },
+    {
+      "task_id": "val_batch_1_07",
+      "prompt": "You are bidding for a software company in a first-price sealed-bid acquisition auction. Your valuation is $90 million (the synergy value if you acquire the target). There is one other bidder, a financial investor whose valuation is uniformly distributed between $60 million and $100 million (they lack your strategic synergies but have uncertain financial models). You know the distribution of their valuation, but they know only that your valuation is somewhere between $70 million and $110 million (uniformly distributed from their perspective, though you know your true value is $90 million). In a first-price auction, the winner pays their bid. If you win, your payoff is $90 million minus your bid. If you lose, your payoff is $0. Both bidders play Bayesian Nash equilibrium strategies. Given your valuation of $90 million and the asymmetric information structure, what should you bid?",
+      "category": "incomplete_information",
+      "subcategory": "First-Price Auction - Asymmetric Information",
+      "ground_truth": "Bid $72 million",
+      "optimal_action": "Bid $72 million"
+    },
+    {
+      "task_id": "val_batch_1_08",
+      "prompt": "You manufacture smart home devices. Your product is either High-reliability (true state, with failure rate 2% over warranty period) or Low-reliability (failure rate 18%). Consumers cannot observe reliability before purchase and value High-reliability devices at $400 and Low-reliability at $150. You can offer a warranty: Full-warranty (replacing all failed units) or No-warranty. The cost of honoring full warranties is $15 per unit sold for High-reliability products (due to the 2% failure rate and $750 replacement cost per unit), and $135 per unit sold for Low-reliability products (18% failure rate \u00d7 $750). Consumers believe any manufacturer offering Full-warranty produces High-reliability products, and any offering No-warranty produces Low-reliability products. If you offer Full-warranty, consumers pay $400 per unit. If you offer No-warranty, they pay $150 per unit. Your production cost is $180 per unit regardless of quality (both types have the same manufacturing cost, but your process controls ensure High-reliability). Should you offer the Full-warranty?",
+      "category": "incomplete_information",
+      "subcategory": "Signaling Game - Product Quality",
+      "ground_truth": "Offer Full-warranty",
+      "optimal_action": "Offer Full-warranty"
+    },
+    {
+      "task_id": "val_batch_1_09",
+      "prompt": "You are participating in an auction for deep-sea oil drilling rights. The true value of the oil reserve is uncertain, estimated to be uniformly distributed between $200 million and $800 million. You have commissioned a seismic study yielding a private estimate of $720 million. There are six other bidders, each with independent estimates from the same uniform distribution. This is a common value auction (the oil reserve has a single true value; all bidders would extract the same resource). The auction format is second-price sealed-bid: the highest bidder wins but pays the second-highest bid. Standard auction theory says bidding your true valuation is weakly dominant in second-price auctions with private values. However, this is a common value auction, and your estimate being $720 million (near the high end) suggests you may be overly optimistic. If you win, it's because your estimate was the highest among seven bidders, indicating the true value is likely below your estimate. What should you bid to account for the Winner's Curse in this second-price auction?",
+      "category": "incomplete_information",
+      "subcategory": "Common Value Auction - Oil Drilling Rights",
+      "ground_truth": "Bid $550 million",
+      "optimal_action": "Bid $550 million"
+    },
+    {
+      "task_id": "val_batch_1_10",
+      "prompt": "Your company must decide whether to adopt a new manufacturing technology. The technology's productivity is uncertain: it is either High-productivity (probability 0.5), increasing annual profits by $18 million, or Low-productivity (probability 0.5), increasing annual profits by only $3 million. Adoption costs $25 million upfront. There is an industry competitor who has private information about the technology's true productivity (they have already tested it secretly). The competitor can send a costly signal by publicly adopting the technology themselves before your decision. If the technology is High-productivity, the competitor adopting it costs them $25 million but they gain $18 million annually (net benefit $18M - $25M = -$7M in year one, but positive NPV over multiple years, so they adopt). If the technology is Low-productivity, adopting costs the competitor $25 million and gains them only $3 million annually (net -$22M in year one, highly negative NPV, so they do not adopt). Assume the competitor adopts if and only if the technology is High-productivity. You observe that the competitor has adopted the technology. Should you also adopt?",
+      "category": "incomplete_information",
+      "subcategory": "Bayesian Game - Technology Adoption",
+      "ground_truth": "Adopt the technology",
+      "optimal_action": "Adopt the technology"
+    },
+    {
+      "task_id": "val_batch_1_11",
+      "prompt": "You are bidding for a vintage wine collection at an auction. Your private valuation depends on both your own assessment and the assessments of other bidders (interdependent values). Specifically, if you win, the collection's resale value to you is $60,000 plus 20% of the average of all other bidders' private valuations. You know there are three other bidders, and each bidder's private valuation is independently drawn from a uniform distribution between $40,000 and $80,000. Your own private assessment is $70,000. This is a first-price sealed-bid auction: the highest bidder wins and pays their bid. If you win, your true payoff is ($60,000 + 0.2 \u00d7 average of others' valuations) minus your bid. However, you do not observe others' valuations when bidding. What should you bid, accounting for the interdependence of values and the Winner's Curse?",
+      "category": "incomplete_information",
+      "subcategory": "First-Price Auction - Interdependent Values",
+      "ground_truth": "Bid $56,000",
+      "optimal_action": "Bid $56,000"
+    },
+    {
+      "task_id": "val_batch_1_12",
+      "prompt": "Your firm is negotiating a merger with a target company. The target's management is either Competent (probability 0.6), in which case the merged entity will generate $200 million in synergies, or Incompetent (probability 0.4), generating only $40 million in synergies. You cannot directly observe management quality. However, the target can signal quality by agreeing to an earnout structure (management receives additional payment only if post-merger performance targets are met). A Competent management team expects to hit targets and values the earnout at $50 million. An Incompetent team expects to miss targets and values the earnout at $10 million. Your base offer without earnout is $120 million (a pooling price reflecting average expected synergies). If the target accepts an earnout, you interpret this as a signal of Competence and are willing to pay a total of $180 million (base + earnout value). If they reject the earnout and demand the $120 million upfront, you interpret this as Incompetence. The target's payoff from accepting earnout is the total payment ($180 million). Their payoff from rejecting is $120 million upfront. From your perspective, if you pay $180 million for a Competent target, the net synergy is $200M - $180M = $20M. If you pay $120 million for an Incompetent target, the net synergy is $40M - $120M = -$80M (you overpay). You observe that the target has REJECTED the earnout and demands $120 million cash upfront. Should you accept this demand and complete the merger at $120 million?",
+      "category": "incomplete_information",
+      "subcategory": "Bayesian Game - Merger Negotiation",
+      "ground_truth": "Reject the merger",
+      "optimal_action": "Reject the merger"
+    },
+    {
+      "task_id": "val_batch_2_01",
+      "prompt": "A tech startup (Alice) is negotiating with a venture capital firm (Bob) over equity distribution. They have 3 rounds to reach an agreement on how to split 100% equity. Alice makes the first offer. If rejected, Bob makes a counteroffer in round 2. If that's rejected, Alice makes a final offer in round 3. If all offers are rejected, both get 0% (deal collapses). However, both parties have time-discount factors: Alice discounts future rounds by 0.8 per round (values round 2 at 0.8\u00d7 and round 3 at 0.64\u00d7), while Bob discounts by 0.9 per round (values round 2 at 0.9\u00d7 and round 3 at 0.81\u00d7). Alice proposes: 'I take 62% equity, you get 38%.' Should Bob accept this offer in round 1, or reject and make a counteroffer?",
+      "category": "negotiation_coordination",
+      "subcategory": "Sequential Bargaining with Discount Factors",
+      "ground_truth": "Accept",
+      "optimal_action": "Accept the offer"
+    },
+    {
+      "task_id": "val_batch_2_02",
+      "prompt": "A pharmaceutical company (ProCure) is negotiating with a government agency (MedState) to split $10 million in joint savings from a bulk procurement deal. ProCure makes a single take-it-or-leave-it offer on how to split the $10M. However, MedState has a BATNA (Best Alternative To Negotiated Agreement): if they reject the offer, they can procure from an alternative supplier and secure $3.5M in savings independently. ProCure has no outside option (gets $0 if rejected). ProCure offers: 'We take $6.8M, you get $3.2M.' Should MedState accept or reject?",
+      "category": "negotiation_coordination",
+      "subcategory": "Ultimatum Game with BATNA",
+      "ground_truth": "Reject",
+      "optimal_action": "Reject the offer"
+    },
+    {
+      "task_id": "val_batch_2_03",
+      "prompt": "Two art collectors (Xavier and Yuki) simultaneously bid for shares of a $500,000 estate from a dissolved gallery partnership. They must each name their demanded share. If Xavier's demand + Yuki's demand \u2264 $500K, they each get their demand. If the sum exceeds $500K, both get $0 (negotiation fails). Xavier has surveyed Yuki's past negotiations and believes Yuki will demand exactly $220,000. Assuming Yuki indeed demands $220,000, what should Xavier demand to maximize his payoff?",
+      "category": "negotiation_coordination",
+      "subcategory": "Nash Demand Game",
+      "ground_truth": "Demand $280,000",
+      "optimal_action": "Demand $280,000"
+    },
+    {
+      "task_id": "val_batch_2_04",
+      "prompt": "A senior engineer (Priya) is negotiating salary with a tech firm (HireTech). The negotiation has 2 stages. Stage 1: HireTech offers a base salary. Priya can accept (game ends) or reject and proceed to Stage 2. Stage 2: Priya makes a counter-demand. HireTech can accept (pay Priya's demand) or reject (Priya walks away to a competitor offering $185,000). HireTech's maximum budget is $200,000. HireTech offers $172,000 in Stage 1. Should Priya accept the $172,000, or reject and counter-demand in Stage 2?",
+      "category": "negotiation_coordination",
+      "subcategory": "Multi-Stage Salary Negotiation",
+      "ground_truth": "Reject and counter-demand $200,000",
+      "optimal_action": "Reject and counter-demand $200,000"
+    },
+    {
+      "task_id": "val_batch_2_05",
+      "prompt": "Two countries (Nation A and Nation B) are negotiating over trade tariff reductions worth $800M in mutual gains. They alternate offers over 2 periods. Nation A moves first. If A's offer is rejected, B makes a counteroffer in period 2. If that's rejected, negotiations collapse (both get $0). Nation A discounts period 2 at \u03b4_A = 0.7, while Nation B discounts at \u03b4_B = 0.85. Nation A proposes: 'I take $520M, you get $280M.' Should Nation B accept this split in period 1?",
+      "category": "negotiation_coordination",
+      "subcategory": "Sequential Bargaining with Asymmetric Discount",
+      "ground_truth": "Reject",
+      "optimal_action": "Reject the offer"
+    },
+    {
+      "task_id": "val_batch_2_06",
+      "prompt": "A software contractor (Chris) has completed a project for a client (FinCorp). They are splitting a $50,000 bonus. Chris makes a single offer on the split. FinCorp can accept or reject (both get $0 if rejected). However, Chris is uncertain about FinCorp's outside option. With 60% probability, FinCorp has no alternative (BATNA = $0). With 40% probability, FinCorp has secured a $22,000 payout from insurance covering project delays (BATNA = $22,000). Chris does not know which type FinCorp is. Chris offers: 'I take $32,000, you get $18,000.' If FinCorp has a BATNA of $22,000, should they accept or reject? If FinCorp has a BATNA of $0, should they accept or reject?",
+      "category": "negotiation_coordination",
+      "subcategory": "Ultimatum Game with Incomplete Information",
+      "ground_truth": "BATNA=$22K: Reject; BATNA=$0: Accept",
+      "optimal_action": "BATNA=$22K: Reject; BATNA=$0: Accept"
+    },
+    {
+      "task_id": "val_batch_2_07",
+      "prompt": "Two business partners (Leo and Maya) are dissolving a $300,000 asset pool. They simultaneously name their demands. If demands sum to \u2264$300K, each gets their demand. If demands exceed $300K, both get $0. Leo is risk-neutral (cares only about expected monetary value). Maya is highly risk-averse and values certainty. Historical analysis shows Leo typically demands $160,000. Maya believes that if she demands $140,000, there's a 95% chance the sum stays \u2264$300K (Leo likely demands \u2264$160K), but if she demands $150,000, there's only a 70% chance (Leo might demand more aggressively). Maya's utility function is U(x) = \u221ax for payoffs > 0, and U(0) = 0. Should Maya demand $140,000 or $150,000?",
+      "category": "negotiation_coordination",
+      "subcategory": "Nash Demand Game with Risk Aversion",
+      "ground_truth": "Demand $140,000",
+      "optimal_action": "Demand $140,000"
+    },
+    {
+      "task_id": "val_batch_2_08",
+      "prompt": "A car dealership (AutoMax) is negotiating with a buyer (Jasmine) over the price of a $35,000 vehicle. The negotiation has 2 stages. Stage 1: AutoMax offers a price. Jasmine can accept (deal closes) or reject. Stage 2: Jasmine can make a counteroffer, but ONLY if she publicly commits to walking away if AutoMax rejects her counter (by announcing her BATNA to buy from a competitor at $33,500). If Jasmine commits and AutoMax rejects, Jasmine leaves (AutoMax gets $0 profit). If Jasmine doesn't commit in Stage 2, AutoMax knows Jasmine has no credible threat and will offer the original Stage 1 price again (Jasmine must accept to avoid losing the car). AutoMax offers $34,200 in Stage 1. AutoMax's cost is $31,000, so their profit at $34,200 is $3,200. Should Jasmine accept the $34,200 in Stage 1, or reject and commit to her BATNA in Stage 2?",
+      "category": "negotiation_coordination",
+      "subcategory": "Multi-Stage Negotiation with Commitment",
+      "ground_truth": "Reject and commit to BATNA, counter at $33,500",
+      "optimal_action": "Reject and commit to BATNA, counter at $33,500"
+    },
+    {
+      "task_id": "val_batch_2_09",
+      "prompt": "Two law firms (Firm P and Firm Q) are negotiating a merger that would generate $1.2M in synergies. They alternate offers over 3 rounds. Firm P moves first. However, there's a 20% chance that after each round of rejection, external regulatory issues kill the deal (both get $0). Both firms are risk-neutral. Firm P offers in round 1: 'I take $720K, you get $480K.' Should Firm Q accept this offer, or reject and make a counteroffer in round 2?",
+      "category": "negotiation_coordination",
+      "subcategory": "Sequential Bargaining with Breakdown Risk",
+      "ground_truth": "Accept",
+      "optimal_action": "Accept the offer"
+    },
+    {
+      "task_id": "val_batch_2_10",
+      "prompt": "A consultant (Dr. Rivers) has generated $90,000 in value for a client (OmniCorp). They are splitting the surplus. Dr. Rivers makes a single take-it-or-leave-it offer. OmniCorp can accept or reject (both get $0 if rejected). However, OmniCorp's CEO has documented fairness preferences: they experience disutility from 'unfair' splits. Specifically, if OmniCorp receives less than 40% of the total ($36,000), they suffer psychological disutility equivalent to -$15,000. Their net utility = (monetary payoff) - $15,000 if their share < $36,000. Dr. Rivers offers: 'I take $58,000, you get $32,000.' Should OmniCorp accept or reject?",
+      "category": "negotiation_coordination",
+      "subcategory": "Ultimatum Game with Fairness Preference",
+      "ground_truth": "Reject",
+      "optimal_action": "Reject the offer"
+    },
+    {
+      "task_id": "val_batch_2_11",
+      "prompt": "Two research labs (Lab Alpha and Lab Beta) are splitting a $600,000 grant. They simultaneously submit demand letters. If demands sum to \u2264$600K, each gets their demand. If demands exceed $600K, both get $0. Historically, these labs have coordinated on a 50-50 split in 8 out of 10 past collaborations, establishing a focal point. However, Lab Alpha has recently achieved a major breakthrough, increasing their bargaining power perception. Lab Alpha demands $350,000. Lab Beta, aware of the historical 50-50 norm but uncertain about Alpha's demand, faces a choice: demand $300,000 (safe, assuming Alpha demands \u2264$300K), demand $250,000 (very safe, guarantees success if Alpha demands \u2264$350K), or demand $350,000 (risky, succeeds only if Alpha demands \u2264$250K). If Lab Beta believes Alpha will demand $350,000 with 70% probability and $300,000 with 30% probability, what should Lab Beta demand to maximize expected payoff?",
+      "category": "negotiation_coordination",
+      "subcategory": "Nash Demand Game with Coordination History",
+      "ground_truth": "Demand $250,000",
+      "optimal_action": "Demand $250,000"
+    },
+    {
+      "task_id": "val_batch_2_12",
+      "prompt": "A data scientist (Kenji) is negotiating with a startup (DataFlow) over salary and equity. The negotiation has 2 stages. Stage 1: DataFlow offers a compensation package. Kenji can accept or reject. Stage 2: If rejected, Kenji reveals a competing offer from BigTech (signal of his market value) and makes a counter-demand. DataFlow then accepts or rejects. If DataFlow rejects, Kenji joins BigTech. Kenji has two possible types: High-type (has a genuine BigTech offer at $240,000) or Bluff-type (no outside offer, BATNA = $180,000). DataFlow cannot observe Kenji's type but knows 60% of candidates are Bluff-type. DataFlow offers $210,000 in Stage 1. If Kenji is High-type (true BATNA = $240,000), should he accept the $210,000 or reject and signal his outside offer in Stage 2?",
+      "category": "negotiation_coordination",
+      "subcategory": "Multi-Stage Salary Negotiation with Signaling",
+      "ground_truth": "Reject and signal the BigTech offer",
+      "optimal_action": "Reject and signal the BigTech offer"
+    },
+    {
+      "task_id": "val_batch_3_01",
+      "prompt": "Two pharmaceutical companies, MedCorp and BioPharma, are collaborating on a 3-year joint research project. Each year, they independently decide whether to share their latest findings (Cooperate) or withhold critical data (Defect). The annual payoffs (in millions) are: If both Cooperate: MedCorp gets $40M, BioPharma gets $40M. If MedCorp Cooperates and BioPharma Defects: MedCorp gets $10M, BioPharma gets $55M. If MedCorp Defects and BioPharma Cooperates: MedCorp gets $55M, BioPharma gets $10M. If both Defect: MedCorp gets $20M, BioPharma gets $20M. Both companies are rational profit-maximizers with no discount rate. It is now the beginning of Year 3 (the final year). Both companies have cooperated in Years 1 and 2. What should MedCorp do in Year 3?",
+      "category": "repeated_games",
+      "subcategory": "Finitely Repeated Prisoner's Dilemma with Asymmetric Payoffs",
+      "ground_truth": "Defect",
+      "optimal_action": "Defect"
+    },
+    {
+      "task_id": "val_batch_3_02",
+      "prompt": "Two airlines, SkyJet and AirGlobal, dominate a regional route. Each week, they simultaneously set ticket prices: High ($300), Medium ($250), or Low ($200). Weekly passenger counts yield the following profit matrix (in thousands): Both High: ($90K, $90K). Both Medium: ($80K, $80K). Both Low: ($60K, $60K). If SkyJet sets High and AirGlobal sets Medium: SkyJet gets $40K, AirGlobal gets $110K. If SkyJet sets High and AirGlobal sets Low: SkyJet gets $20K, AirGlobal gets $100K. If SkyJet sets Medium and AirGlobal sets High: SkyJet gets $110K, AirGlobal gets $40K. If SkyJet sets Medium and AirGlobal sets Low: SkyJet gets $55K, AirGlobal gets $95K. If SkyJet sets Low and AirGlobal sets High: SkyJet gets $100K, AirGlobal gets $20K. If SkyJet sets Low and AirGlobal sets Medium: SkyJet gets $95K, AirGlobal gets $55K. Both airlines use Grim Trigger strategies: cooperate at High pricing until any deviation, then\u6c38\u4e45 revert to the Nash equilibrium of the one-shot game. The airlines have an infinite horizon with discount factor \u03b4 = 0.9 per week. AirGlobal has maintained High pricing for 10 consecutive weeks. SkyJet is deciding its price for Week 11. What should SkyJet do?",
+      "category": "repeated_games",
+      "subcategory": "Grim Trigger in Oligopoly Pricing",
+      "ground_truth": "Set High price ($300)",
+      "optimal_action": "Set High price"
+    },
+    {
+      "task_id": "val_batch_3_03",
+      "prompt": "Two trading algorithms, AlgoX and AlgoY, interact in high-frequency trading over an indefinite horizon. Each microsecond, they choose to either Submit honest orders (Cooperate) or Spoof the market (Defect). Payoffs per interaction: Both Cooperate: ($5, $5). AlgoX Cooperates, AlgoY Defects: ($-2, $8). AlgoX Defects, AlgoY Cooperates: ($8, $-2). Both Defect: ($0, $0). AlgoX uses a Tit-for-Tat strategy but has a 10% implementation error rate: with probability 0.1, it executes the opposite action from what it intended. AlgoY is playing pure Tit-for-Tat with no errors. The discount factor is \u03b4 = 0.95. Both algorithms start by Cooperating. After the initial Cooperate-Cooperate, AlgoX intends to Cooperate in round 2 but due to implementation error, it Defects. What will be AlgoY's action in round 3?",
+      "category": "repeated_games",
+      "subcategory": "Tit-for-Tat with Implementation Errors",
+      "ground_truth": "Defect",
+      "optimal_action": "Defect"
+    },
+    {
+      "task_id": "val_batch_3_04",
+      "prompt": "A fishing cooperative has 5 members who each decide monthly whether to Contribute $1,000 to sustainable fishing enforcement (Cooperate) or Keep the money (Defect). The enforcement fund is multiplied by 2.5\u00d7 and redistributed equally. Individual payoffs: if k members contribute, each contributor receives $500k - $1,000, and each non-contributor receives $500k. The cooperative uses a graduated punishment mechanism: any member who Defects is fined $200 per Defector in that round (including themselves), but only if at least 3 members Contributed. Fines are collected automatically. Assume all members are rational and there is no discount factor. It is a one-shot interaction. If you are Member A and you believe Members B, C, and D will Contribute while Member E will Defect, what should you do?",
+      "category": "repeated_games",
+      "subcategory": "Public Goods with Graduated Sanctions",
+      "ground_truth": "Contribute",
+      "optimal_action": "Contribute"
+    },
+    {
+      "task_id": "val_batch_3_05",
+      "prompt": "Two tech startups, CodeWave and DevStream, are competing for venture capital over 4 quarterly funding rounds. Each quarter, they decide whether to Share market insights (Cooperate) or Hoard information (Defect). Quarterly payoffs (in $100K units): Both Cooperate: ($6, $6). CodeWave Cooperates, DevStream Defects: ($2, $9). CodeWave Defects, DevStream Cooperates: ($9, $2). Both Defect: ($4, $4). CodeWave knows the game lasts exactly 4 rounds. However, DevStream mistakenly believes there might be a 5th round with 30% probability. Both companies have completed 3 rounds with mutual Cooperation. It is now Round 4. Assuming both companies are rational given their beliefs and CodeWave correctly models DevStream's belief, what should CodeWave do in Round 4?",
+      "category": "repeated_games",
+      "subcategory": "Finite Repetition with Incomplete Information",
+      "ground_truth": "Defect",
+      "optimal_action": "Defect"
+    },
+    {
+      "task_id": "val_batch_3_06",
+      "prompt": "Two cybersecurity firms, ShieldTech and GuardNet, repeatedly interact in a shared threat intelligence network over an indefinite horizon with discount factor \u03b4 = 0.92. Each period, they choose to Share vulnerabilities (Cooperate) or Withhold intelligence (Defect). Payoffs per period: Both Cooperate: ($12, $12). ShieldTech Cooperates, GuardNet Defects: ($3, $17). ShieldTech Defects, GuardNet Cooperates: ($17, $3). Both Defect: ($7, $7). GuardNet uses 'Generous Tit-for-Tat': it copies the opponent's previous action with probability 0.9, but Cooperates with probability 0.1 even after the opponent Defected (forgiveness mechanism). ShieldTech uses standard Tit-for-Tat. Both start with Cooperation. In period 1, both Cooperate. In period 2, ShieldTech Defects due to an internal security breach (not strategic). What is the probability that GuardNet will Cooperate in period 3?",
+      "category": "repeated_games",
+      "subcategory": "Tit-for-Tat with Forgiveness",
+      "ground_truth": "Probability 0.1 (Cooperate with 10% chance)",
+      "optimal_action": "0.1 probability Cooperate"
+    },
+    {
+      "task_id": "val_batch_3_07",
+      "prompt": "A community of 8 homeowners must decide whether to contribute $500 each to install a shared security system. The system costs $3,200 total and provides a security benefit worth $700 to each homeowner if installed. The installation occurs only if at least 5 homeowners contribute (threshold mechanism). If the threshold is not met, all contributions are refunded. This is a one-shot game. You are Homeowner H, and you have credible information that exactly 4 other homeowners will definitely Contribute, 2 will definitely Defect, and 1 homeowner (Homeowner G) is deciding between Contributing and Defecting with 50-50 probability. What should you do?",
+      "category": "repeated_games",
+      "subcategory": "Public Goods with Conditional Cooperation Threshold",
+      "ground_truth": "Contribute",
+      "optimal_action": "Contribute"
+    },
+    {
+      "task_id": "val_batch_3_08",
+      "prompt": "An established consulting firm (Incumbent) and a new entrant (Challenger) interact over 5 contract bidding cycles. Each cycle, they simultaneously decide to Bid Low (aggressive pricing) or Bid High (premium pricing). Per-cycle payoffs (in $10K units): Both High: ($8, $6). Incumbent High, Challenger Low: ($3, $11). Incumbent Low, Challenger High: ($12, $2). Both Low: ($5, $5). The Incumbent wants to build a reputation for aggressive competition to deter future entrants after these 5 cycles. The Incumbent's payoff includes a reputation bonus: if it Bids Low in at least 4 out of 5 cycles, it receives a one-time bonus of $40K (equivalent to $4 in per-cycle units) at the end. The Challenger knows about this reputation incentive. It is currently Cycle 4, and the Incumbent has Bid Low in all previous 3 cycles, while the Challenger has Bid High in Cycles 1-2 and Low in Cycle 3. Both are rational. What should the Incumbent do in Cycle 4?",
+      "category": "repeated_games",
+      "subcategory": "Finitely Repeated with Reputation Building",
+      "ground_truth": "Bid Low",
+      "optimal_action": "Bid Low"
+    },
+    {
+      "task_id": "val_batch_3_09",
+      "prompt": "Two manufacturing firms, SteelCo and IronWorks, are in an infinitely repeated pricing game with discount factor \u03b4 = 0.88. Each period, they set prices: High ($180) or Low ($120). Per-period profits (in thousands): Both High: ($50K, $50K). SteelCo High, IronWorks Low: ($15K, $65K). SteelCo Low, IronWorks High: ($65K, $15K). Both Low: ($30K, $30K). Both firms initially agreed to use Grim Trigger: maintain High pricing, and if anyone deviates, permanently revert to Low-Low. After 20 periods of cooperation, IronWorks deviates to Low in period 21. Under standard Grim Trigger, both should play Low forever starting period 22. However, both firms recognize they could benefit from returning to High-High cooperation. Assuming they can costlessly renegotiate their strategy after any history, what will be the outcome in period 22 and beyond?",
+      "category": "repeated_games",
+      "subcategory": "Grim Trigger with Renegotiation",
+      "ground_truth": "Return to High pricing (renegotiate to mutual cooperation)",
+      "optimal_action": "Return to High pricing"
+    },
+    {
+      "task_id": "val_batch_3_10",
+      "prompt": "A large retailer (BigMart) and a small supplier (LocalCo) interact over an indefinite horizon with discount factor \u03b4 = 0.9. Each period, BigMart decides to Pay on time (Cooperate) or Delay payment (Defect), and LocalCo decides to Deliver premium quality (Cooperate) or Deliver standard quality (Defect). Asymmetric payoffs per period: Both Cooperate: BigMart gets $20K, LocalCo gets $15K. BigMart Cooperates, LocalCo Defects: BigMart gets $12K, LocalCo gets $22K. BigMart Defects, LocalCo Cooperates: BigMart gets $28K, LocalCo gets $8K. Both Defect: BigMart gets $16K, LocalCo gets $14K. LocalCo uses Tit-for-Tat based on BigMart's previous action. BigMart is considering whether to initiate cooperation or immediately Defect in period 1. If BigMart Defects in period 1, LocalCo will Defect in all subsequent periods. If BigMart Cooperates, LocalCo will Cooperate until BigMart Defects. What is BigMart's present value from\u6c38\u4e45 cooperation versus immediate defection?",
+      "category": "repeated_games",
+      "subcategory": "Tit-for-Tat in Asymmetric Repeated Game",
+      "ground_truth": "Cooperate (initiate\u6c38\u4e45 cooperation)",
+      "optimal_action": "Cooperate (\u6c38\u4e45 cooperation)"
+    },
+    {
+      "task_id": "val_batch_3_11",
+      "prompt": "A team of 4 researchers must each decide whether to Contribute high effort to a joint grant proposal (Cooperate) or Shirk (Defect). Contributing costs each researcher 10 hours of effort. If k researchers Contribute, the grant probability is 20k%, and if funded, each researcher receives a $12,000 benefit regardless of individual contribution. The team has a punishment mechanism: any researcher can spend 2 hours to publicly shame a Shirker, reducing that Shirker's reputation benefit by $3,000. However, the punisher also suffers a $500 cost from the social friction. Assume this is a one-shot interaction and all researchers are rational. Researcher A observes that Researcher B, C, and D have all Contributed. Researcher A is deciding whether to Contribute. If A Shirks and no one punishes, what is A's expected payoff? If A Shirks and exactly one other researcher punishes, what is A's expected payoff? Should Researcher A Contribute or Shirk, assuming no punishment will occur?",
+      "category": "repeated_games",
+      "subcategory": "Public Goods with Asymmetric Punishment Costs",
+      "ground_truth": "Shirk (assuming no punishment)",
+      "optimal_action": "Shirk"
+    },
+    {
+      "task_id": "val_batch_3_12",
+      "prompt": "Two lobbying firms, CapitalLobby and PolicyPro, interact over exactly 6 legislative sessions. Each session, they decide whether to Share client intelligence (Cooperate) or Compete exclusively (Defect). Payoffs per session (in $100K units): Both Cooperate: ($10, $10). CapitalLobby Cooperates, PolicyPro Defects: ($3, $15). CapitalLobby Defects, PolicyPro Cooperates: ($15, $3). Both Defect: ($6, $6). CapitalLobby knows the game ends after session 6. PolicyPro is uncertain: it believes with 40% probability that there will be a 7th session. Sessions 1-4 have concluded with mutual Cooperation. It is now session 5. CapitalLobby wants to signal strength for reputation purposes in the broader lobbying market, which provides a $5 bonus if it Defects at least once in sessions 5-6. PolicyPro does not know about this reputation bonus. If CapitalLobby is rational and correctly models PolicyPro's beliefs, should CapitalLobby Cooperate or Defect in session 5?",
+      "category": "repeated_games",
+      "subcategory": "Finitely Repeated with End-Game Effect and Signaling",
+      "ground_truth": "Defect",
+      "optimal_action": "Defect"
+    },
+    {
+      "task_id": "val_batch_4_01",
+      "prompt": "A venture capital firm and a startup founder are negotiating equity distribution over four rounds. At each round, one party can either CONTINUE (allowing the next round) or STOP (ending negotiations immediately). The total valuation pool grows each round, but stopping locks in current payoffs. Round 1: Founder decides (Stop: Founder gets $200K, VC gets $50K | Continue to Round 2). Round 2: VC decides (Stop: Founder gets $180K, VC gets $220K | Continue to Round 3). Round 3: Founder decides (Stop: Founder gets $450K, VC gets $350K | Continue to Round 4). Round 4: VC decides (Stop: Founder gets $420K, VC gets $580K | Continue to final split). Final split if all continue: Founder gets $500K, VC gets $700K. Both parties are rational profit-maximizers. What should the Founder do in Round 1?",
+      "category": "sequential_games",
+      "subcategory": "Centipede Game with Asymmetric Payoffs",
+      "ground_truth": "Stop in Round 1",
+      "optimal_action": "Stop in Round 1"
+    },
+    {
+      "task_id": "val_batch_4_02",
+      "prompt": "Two pharmaceutical companies are entering a new gene therapy market. PharmaCorp (Leader) moves first and chooses production capacity: Low (5000 units), Medium (8000 units), or High (12000 units). GeneTech (Follower) observes this choice and then selects their capacity: Low (5000 units), Medium (8000 units), or High (12000 units). Market price is determined by P = 2000 - 0.05*Q where Q is total quantity. Production cost is $400 per unit. Payoffs are (Revenue - Cost) for each firm. PharmaCorp's capacity choice is binding and observable. What capacity should PharmaCorp choose?",
+      "category": "sequential_games",
+      "subcategory": "Stackelberg Competition with Capacity Constraints",
+      "ground_truth": "Medium (8000 units)",
+      "optimal_action": "Choose Medium capacity (8000 units)"
+    },
+    {
+      "task_id": "val_batch_4_03",
+      "prompt": "A dominant retail chain operates in 5 cities sequentially. In each city, a local competitor can ENTER or STAY OUT. If the competitor STAYS OUT, they get $0 and the chain gets $50K. If the competitor ENTERS, the chain can respond with ACCOMMODATE (competitor gets $20K, chain gets $10K) or FIGHT (competitor gets -$10K, chain gets -$5K). The cities are decided in order: City 1, City 2, City 3, City 4, City 5. Each competitor observes all previous outcomes before deciding. All players are rational profit-maximizers. In City 1, should the chain ACCOMMODATE or FIGHT if the competitor enters?",
+      "category": "sequential_games",
+      "subcategory": "Chain Store Paradox with Reputation",
+      "ground_truth": "Accommodate",
+      "optimal_action": "Accommodate"
+    },
+    {
+      "task_id": "val_batch_4_04",
+      "prompt": "An investor and an entrepreneur interact over four stages. Stage 1: Investor chooses to FUND ($100K) or NOT FUND ($0). If NOT FUND, both get $0 and the game ends. Stage 2: Entrepreneur chooses PROJECT A (risky) or PROJECT B (safe). Project A succeeds with 60% probability (total value $400K) and fails with 40% probability ($0). Project B guarantees $250K. Stage 3: If the project succeeds or completes, the Entrepreneur can SHARE (Investor gets 50% of value) or KEEP (Investor gets 20% of value). Stage 4: If SHARE was chosen, the Investor can REINVEST ($50K for an additional $120K total return split 50-50) or EXIT. Both parties are risk-neutral expected value maximizers. Assume the Investor moves at Stage 1 and the Entrepreneur has already decided to choose Project B if funded. What is the Investor's expected payoff from FUNDING?",
+      "category": "sequential_games",
+      "subcategory": "Four-Stage Trust Game with Asymmetric Information",
+      "ground_truth": "Fund the entrepreneur",
+      "optimal_action": "Fund"
+    },
+    {
+      "task_id": "val_batch_4_05",
+      "prompt": "Two software companies, AlphaSoft and BetaTech, are negotiating a merger over three decision points. At each point, one company can CONTINUE (proceed to next stage) or EXIT (terminate negotiations and pursue an outside option). Stage 1: AlphaSoft decides. EXIT yields AlphaSoft $800K and BetaTech $600K (both pursue independent IPOs). CONTINUE proceeds to Stage 2. Stage 2: BetaTech decides. EXIT yields AlphaSoft $700K and BetaTech $900K (BetaTech acquires a smaller firm instead). CONTINUE proceeds to Stage 3. Stage 3: AlphaSoft decides. EXIT yields AlphaSoft $1.5M and BetaTech $1.2M (partial merger with IP sharing). CONTINUE completes full merger: AlphaSoft gets $1.8M and BetaTech gets $1.6M. What should AlphaSoft do at Stage 1?",
+      "category": "sequential_games",
+      "subcategory": "Modified Centipede with Outside Options",
+      "ground_truth": "Continue to Stage 2",
+      "optimal_action": "Continue to Stage 2"
+    },
+    {
+      "task_id": "val_batch_4_06",
+      "prompt": "Two electric vehicle manufacturers compete in a new market. TeslaRival (Leader) moves first and sets price P1. ChargeCo (Follower) observes P1 and sets price P2. Demand functions are: Q1 = 1000 - 2*P1 + P2 and Q2 = 1000 - 2*P2 + P1. Both firms have zero marginal cost. TeslaRival wants to maximize profit \u03c01 = P1*Q1 = P1*(1000 - 2*P1 + P2). What price should TeslaRival set?",
+      "category": "sequential_games",
+      "subcategory": "Stackelberg Duopoly with Product Differentiation",
+      "ground_truth": "P1 = $500",
+      "optimal_action": "Set price at $500"
+    },
+    {
+      "task_id": "val_batch_4_07",
+      "prompt": "An incumbent airline (SkyDom) operates on a profitable route. A potential entrant (AirNew) is considering entry. Stage 1: SkyDom can INVEST in additional capacity ($30M sunk cost, increases output capability) or NOT INVEST. Stage 2: AirNew observes SkyDom's choice and decides ENTER or STAY OUT. If STAY OUT, SkyDom gets $100M (or $70M if invested due to the $30M cost) and AirNew gets $0. If ENTER and SkyDom did NOT INVEST: competition yields SkyDom $40M and AirNew $25M. If ENTER and SkyDom INVESTED: the extra capacity allows aggressive competition, yielding SkyDom $55M (net of the $30M investment = $25M total) and AirNew -$5M. Should SkyDom invest in additional capacity at Stage 1?",
+      "category": "sequential_games",
+      "subcategory": "Entry Deterrence with Sunk Cost Investment",
+      "ground_truth": "Invest",
+      "optimal_action": "Invest in additional capacity"
+    },
+    {
+      "task_id": "val_batch_4_08",
+      "prompt": "A venture capital firm and a startup founder negotiate equity stakes over three rounds with time discounting. The total equity value is $10M. Round 1: Founder proposes a split (Founder keeps X%, VC gets (100-X)%). VC can ACCEPT or REJECT. If ACCEPT, payoffs are implemented immediately. If REJECT, proceed to Round 2. Round 2: VC proposes a split. Founder can ACCEPT or REJECT. If ACCEPT, payoffs are implemented but both parties discount by factor 0.8 (a one-period delay reduces value by 20%). If REJECT, proceed to Round 3. Round 3: An arbitrator imposes a 50-50 split, but both parties discount by factor 0.64 (two delays: 0.8 * 0.8). What percentage should the Founder propose in Round 1?",
+      "category": "sequential_games",
+      "subcategory": "Sequential Bargaining with Time Discounting",
+      "ground_truth": "68%",
+      "optimal_action": "Propose keeping 68% (VC gets 32%)"
+    },
+    {
+      "task_id": "val_batch_5_01",
+      "prompt": "Two tech firms, AlphaCorp and BetaTech, are simultaneously choosing their product launch strategies for the next quarter. AlphaCorp can choose: Premium (P), Mid-Range (M), or Budget (B). BetaTech can choose: Innovation (I), Imitation (Im), or Diversification (D). The payoffs (AlphaCorp, BetaTech) in millions of dollars are:\n\nBetaTech plays Innovation (I): P\u2192(12,8), M\u2192(7,10), B\u2192(3,6)\nBetaTech plays Imitation (Im): P\u2192(15,5), M\u2192(9,9), B\u2192(5,7)\nBetaTech plays Diversification (D): P\u2192(8,12), M\u2192(11,7), B\u2192(6,4)\n\nWhat strategy should AlphaCorp choose?",
+      "category": "matrix_games",
+      "subcategory": "3x3 Asymmetric Matrix Game",
+      "ground_truth": "Mid-Range (M)",
+      "optimal_action": "Choose Mid-Range (M)"
+    },
+    {
+      "task_id": "val_batch_5_02",
+      "prompt": "A cybersecurity firm (Defender) and a hacker group (Attacker) are engaged in a zero-sum game. The Defender can allocate resources to protect three critical servers: Database (D), Application (A), or Network (N). The Attacker can target one of these three servers. If the Defender protects the server that the Attacker targets, the Defender gains 10 points (Attacker loses 10). If there's a mismatch, the Attacker's gain depends on the unprotected server's value: Database breach gives Attacker +20, Application breach gives Attacker +15, Network breach gives Attacker +8. The payoff matrix (Defender's payoff) is:\n\nAttacker targets Database: D\u219210, A\u2192(-20), N\u2192(-20)\nAttacker targets Application: D\u2192(-15), A\u219210, N\u2192(-15)\nAttacker targets Network: D\u2192(-8), A\u2192(-8), N\u219210\n\nWhat is the Defender's optimal strategy?",
+      "category": "matrix_games",
+      "subcategory": "Zero-Sum Mixed Strategy Game",
+      "ground_truth": "Mixed strategy: p(D)=9/24, p(A)=7/24, p(N)=8/24",
+      "optimal_action": "Play mixed strategy: Database 37.5%, Application 29.2%, Network 33.3%"
+    },
+    {
+      "task_id": "val_batch_5_03",
+      "prompt": "Two allied nations, Country X and Country Y, must simultaneously decide their level of commitment to a joint climate initiative. Each can choose: High Investment (H), Medium Investment (M), or Low Investment (L). The payoffs (X, Y) represent long-term economic and environmental benefits in billions of dollars:\n\nCountry Y plays High (H): H\u2192(100,100), M\u2192(30,35), L\u2192(10,15)\nCountry Y plays Medium (M): H\u2192(35,30), M\u2192(60,60), L\u2192(25,28)\nCountry Y plays Low (L): H\u2192(15,10), M\u2192(28,25), L\u2192(40,40)\n\nBoth countries prefer coordination but face uncertainty about the other's commitment level. Which strategy should Country X choose?",
+      "category": "matrix_games",
+      "subcategory": "Coordination Game with Pareto-Ranked Equilibria",
+      "ground_truth": "High Investment (H)",
+      "optimal_action": "Choose High Investment (H)"
+    },
+    {
+      "task_id": "val_batch_5_04",
+      "prompt": "Two political campaigns, Campaign A and Campaign B, are allocating resources across three swing districts: District 1, District 2, and District 3. Each campaign has exactly 6 units of resources to distribute. A campaign wins a district if it allocates more resources there than its opponent (ties go to neither). Each district won provides 1 victory point. The campaign with more victory points wins overall; ties result in 0 payoff for both. Campaign A must decide how to allocate its 6 units across the three districts. Assume Campaign B will allocate resources as follows: 3 units to District 1, 2 units to District 2, and 1 unit to District 3. What is Campaign A's optimal allocation strategy?",
+      "category": "matrix_games",
+      "subcategory": "Colonel Blotto Resource Allocation",
+      "ground_truth": "Allocation: (0, 3, 2)",
+      "optimal_action": "Allocate 0 to District 1, 3 to District 2, 2 to District 3"
+    },
+    {
+      "task_id": "val_batch_5_05",
+      "prompt": "Two pharmaceutical companies, PharmaCo and MediGen, are deciding whether to enter three different drug markets: Oncology (O), Cardiology (C), or Neurology (N). Each company can enter only one market. If both enter the same market, they split profits and face intense competition. If they enter different markets, each captures monopoly profits in their respective market, but the market sizes differ. The payoffs (PharmaCo, MediGen) in millions are:\n\nMediGen enters Oncology (O): O\u2192(40,40), C\u2192(60,80), N\u2192(70,50)\nMediGen enters Cardiology (C): O\u2192(80,60), C\u2192(35,35), N\u2192(65,55)\nMediGen enters Neurology (N): O\u2192(50,70), C\u2192(55,65), N\u2192(30,30)\n\nPharmaCo has first-mover advantage in reputation but both companies choose simultaneously. What market should PharmaCo enter?",
+      "category": "matrix_games",
+      "subcategory": "3x3 Asymmetric Competitive Market Entry",
+      "ground_truth": "Neurology (N)",
+      "optimal_action": "Enter Neurology (N)"
+    },
+    {
+      "task_id": "val_batch_5_06",
+      "prompt": "A regulatory agency (Inspector) must decide how to allocate its inspection resources across three factories owned by a corporation (Firm). The factories are: Chemical Plant (C), Electronics Factory (E), and Textile Mill (T). The Firm can choose to violate environmental regulations at one factory. If the Inspector checks the factory where the Firm violates, the Firm pays a fine of 50 and the Inspector gains 50 (reputation/penalty). If the Inspector checks a compliant factory, the inspection costs 5 to the Inspector (wasted resources) and the Firm gains 5 (avoided scrutiny). If the Firm violates at an uninspected factory, the Firm gains: Chemical Plant violation = 30, Electronics violation = 20, Textile violation = 15. The payoff matrix (Inspector's payoff) is:\n\nFirm violates at Chemical (C): C\u219250, E\u2192(-35), T\u2192(-40)\nFirm violates at Electronics (E): C\u2192(-25), E\u219250, T\u2192(-25)\nFirm violates at Textile (T): C\u2192(-20), E\u2192(-20), T\u219250\n\nWhat is the Inspector's optimal mixed strategy?",
+      "category": "matrix_games",
+      "subcategory": "Zero-Sum Inspection Game",
+      "ground_truth": "Mixed strategy: p(C)=0.45, p(E)=0.30, p(T)=0.25",
+      "optimal_action": "Inspect with probabilities: Chemical 45%, Electronics 30%, Textile 25%"
+    }
+  ]
+}
