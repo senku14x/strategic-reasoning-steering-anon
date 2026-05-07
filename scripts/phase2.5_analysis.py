@@ -50,10 +50,10 @@ print("Imports OK")
 # Configuration
 # ---------------------------------------------------------------------------
 
-ACTIVATIONS_NPZ = "/content/drive/MyDrive/workaround/phase0_toolkit/phase2_outputs/r1_qwen14b_activations_v2.npz"
-VECTORS_NPZ     = "/content/drive/MyDrive/workaround/phase0_toolkit/phase2_outputs/r1_qwen14b_dom_vectors_v2.npz"
-REPORT_JSON     = "/content/drive/MyDrive/workaround/phase0_toolkit/phase2_outputs/phase2_geometry_report.json"
-OUTPUT_DIR      = "/content/drive/MyDrive/workaround/phase0_toolkit/phase2_outputs"
+ACTIVATIONS_NPZ = "artifacts/r1_qwen14b_activations_v2.npz"
+VECTORS_NPZ     = "artifacts/r1_qwen14b_dom_vectors_v2.npz"
+REPORT_JSON     = "results/phase2_geometry_report.json"
+OUTPUT_DIR      = "outputs/phase2_analysis"
 
 HEADLINE_LAYER = 24
 N_LAYERS = 48
