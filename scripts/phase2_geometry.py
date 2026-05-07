@@ -48,10 +48,10 @@ class Phase2Config:
     model_short: str = "r1_qwen14b"
 
     # UPDATE THESE PATHS
-    chains_file:    str = "/content/drive/MyDrive/workaround/phase0_toolkit/r1_qwen14b_chains.json"
-    segments_file:  str = "/content/drive/MyDrive/workaround/phase0_toolkit/r1_qwen14b_segments.jsonl"
-    labels_file:    str = "/content/drive/MyDrive/workaround/phase0_toolkit/r1_qwen14b_model_labels_chainmode.jsonl"
-    output_dir:     str = "/content/drive/MyDrive/workaround/phase0_toolkit/phase2_outputs"
+    chains_file:    str = "artifacts/r1_qwen14b_chains.json"
+    segments_file:  str = "artifacts/r1_qwen14b_segments.jsonl"
+    labels_file:    str = "artifacts/r1_qwen14b_model_labels_chainmode.jsonl"
+    output_dir:     str = "outputs/phase2_outputs"
 
     max_length: int = 16384
     target_layers: Optional[List[int]] = None
@@ -653,9 +653,6 @@ robustness = run_robustness_suite(dom_results, CFG)
 
 def print_verdict(geometry, robustness, config):
     L = config.headline_layer
-    print("\n" + "=" * 72)
-    print("  PHASE 2 GO/NO-GO VERDICT")
-    print("=" * 72)
 
     key = "cosine_matrix_with_vs_without"
     if key in geometry:
@@ -665,11 +662,11 @@ def print_verdict(geometry, robustness, config):
             val = mat[labels.index("opponent_modeling"), labels.index("deduction")]
             print(f"\n  Primary (with-vs-without, L{L}): {val:+.4f}")
             if val <= -0.6:
-                print(f"  STRONG GO: Antagonism survives. Proceed to Phase 2.5.")
+                print(f"Strong negative cosine observed.")
             elif val <= -0.3:
-                print(f"  WEAK GO: Antagonism real but weaker. Proceed with caution.")
+                print(f"Moderate negative cosine observed.")
             else:
-                print(f"  NO-GO: Antagonism was an annotation artifact. Branch 3.")
+                print(f"Weak or non-negative cosine observed.")
 
     if "bootstrap" in robustness:
         bs = robustness["bootstrap"]
@@ -702,4 +699,4 @@ json_file = out_dir / "phase2_geometry_report.json"
 with open(json_file, "w") as f:
     json.dump(report, f, indent=2, default=str)
 print(f"Saved report: {json_file}")
-print("\nPhase 2 complete.")
+print(""\nPhase 2 extraction and geometry analysis complete."")
