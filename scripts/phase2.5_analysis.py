@@ -1,32 +1,9 @@
 """
-Phase 2 + Phase 2.5 Full Analysis
-==================================
-Loads phase2 activation and DoM vector NPZ outputs, then runs:
 
-  Phase 2 Analysis (Cells 1-3):
-    - Per-layer cosine tables for antagonism pairs, ToM cluster alignment,
-      and other key pairs
-    - Full 10x10 cosine matrix at layers 0, 12, 24, 36, 47
-    - Layer-wise norm profiles
+Note: This script documents the analysis pipeline used for Phase 2 / Phase 2.5.
+It expects precomputed activation and DoM-vector NPZ files. These large artifacts
+are not included in the anonymous supplementary repository unless explicitly provided.
 
-  Phase 2.5 (Cells 4-10):
-    Three complementary tests to determine if the opp_mod/deduction
-    antagonism is a single signed axis or two separable directions:
-      Test 1 — Linear probe vs DoM direction agreement
-      Test 2 — SVD depth profile across all 48 layers
-      Test 3 — Co-occurrence geometry (segments labeled BOTH)
-    Integrated verdict synthesis.
-
-  Phase 2.5 Extended (Cells 11-18):
-    Investigates WHY probe and DoM direction disagree (cos=0.15):
-      - Probe accuracy and probe-DoM cosine at every layer
-      - Regularization sweep (does stronger reg recover DoM direction?)
-      - Probe direction decomposed onto DoM vectors and SVD basis
-      - Within-class variance and Fisher discriminant comparison
-      - 2D scatter of segments on top SVD components
-      - Probe direction stability across layers
-
-No GPU needed — pure numpy/scipy/sklearn.
 """
 
 import json
