@@ -16,6 +16,8 @@ artifacts are not included.
 data/
   final_dataset.json
   ood.json
+  r1_llama8b_chains.json
+  r1_qwen14b_chains.json
 scripts/
   annotation_v2.py
   annotate_chains.py
